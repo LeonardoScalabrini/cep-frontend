@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { listarCeps } from '../../store/selectors'
+import { ceps } from '../../store/selectors'
 
 const Listar = ({ceps}) => (
   <div>
@@ -16,4 +16,4 @@ const Listar = ({ceps}) => (
   </div>
 )
 
-export default connect(listarCeps)(Listar)
+export default connect(ceps)(Listar)

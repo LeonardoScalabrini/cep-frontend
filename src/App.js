@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import Routes from './router'
+import { listCep } from './store/actions'
+import { connect } from 'react-redux'
 
 class App extends Component {
+
+  componentDidMount () {
+    this.props.listCep()
+  }
+
   render () {
     return (
       <div className='app'>
@@ -11,4 +18,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default connect(null, {listCep})(App)
