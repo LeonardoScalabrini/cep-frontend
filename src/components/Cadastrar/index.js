@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { addCep } from '../../store/actions'
 
 class Cadastrar extends Component {
 
@@ -9,55 +12,44 @@ class Cadastrar extends Component {
       cep: ''
     }
 
-    this.cadastrarCep = this.cadastrarCep.bind(this)
+    this.adicionarCep = this.adicionarCep.bind(this)
   }
 
-  cadastrarCep (e) {
-    if (this._cidadeInput.value && this._cepInput.value) {
-      let novo = {
-        cidade: this._cidadeInput.value,
-        cep: this._cepInput.value,
-        _id: Date.now()
-      }
-
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(novo)
-      }
-      let url = 'https://correios.free.beeceptor.com/cep'
-
-      fetch(url, requestOptions)
-        .then(response => response.json())
-        .then(data => this.setState({ cidade: '', cep: '' }))
+  adicionarCep (e) {
+    let cep = {
+      cidade: this._cidadeInput.value,
+      cep: this._cepInput.value,
+      _id: Date.now()
     }
+    this.props.addCep(cep)
+    this.setState({ cidade: '', cep: '' })
   }
 
   render () {
     return (
       <div>
-        <form onSubmit={this.cadastrarCep}>
-          <input
-            type='text'
-            placeholder='Cidade'
-            name='cidade'
-            value={this.state.cidade}
-            onChange={(ev) => this.setState({ cidade: ev.target.value })}
-            ref={(event) => this._cidadeInput = event} />
-          <input
-            type='text'
-            placeholder='Cep'
-            name='cep'
-            value={this.state.cep}
-            onChange={(ev) => this.setState({ cep: ev.target.value })}
-            ref={(event) => this._cepInput = event} />
-          <button type='submit'>
-            Adicionar
-          </button>
-        </form>
+        <Link to='/'> Voltar
+        </Link>
+        <input
+          type='text'
+          placeholder='Cidade'
+          name='cidade'
+          value={this.state.cidade}
+          onChange={(ev) => this.setState({ cidade: ev.target.value })}
+          ref={(event) => this._cidadeInput = event} />
+        <input
+          type='text'
+          placeholder='Cep'
+          name='cep'
+          value={this.state.cep}
+          onChange={(ev) => this.setState({ cep: ev.target.value })}
+          ref={(event) => this._cepInput = event} />
+        <button className='add-cep' onClick={this.adicionarCep}>
+          Adicionar CEP
+        </button>
       </div>
     )
   }
 }
 
-export default Cadastrar
+export default connect(null, {addCep})(Cadastrar)

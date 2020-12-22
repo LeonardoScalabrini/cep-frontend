@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Routes from './router'
-import './global.css'
 
 class App extends Component {
   render () {

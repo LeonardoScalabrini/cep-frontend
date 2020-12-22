@@ -11,8 +11,7 @@ class Home extends Component {
   render () {
     return (
       <div>
-        <Link to='cadastrar-cep'> Cadastrar Novo Cep
-        </Link>
+        <Link to='cadastrar-cep'>Adicionar CEP</Link>
         <br/>
         <Listar/>
       </div>
