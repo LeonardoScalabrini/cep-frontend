@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import Typography from '@material-ui/core/Typography'
 
 class Header extends Component {
   render () {
     return (
-      <div>
+      <Typography component="h1" variant="h5" align="center">
         Correios Gotham City
-      </div>
+      </Typography>
     )
   }
 }
