@@ -39,7 +39,7 @@ class Cadastrar extends Component {
           ref={(event) => this._cidadeInput = event} />
         <input
           type='text'
-          placeholder='Cep'
+          placeholder='CEP'
           name='cep'
           value={this.state.cep}
           onChange={(ev) => this.setState({ cep: ev.target.value })}

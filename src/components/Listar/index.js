@@ -5,7 +5,7 @@ import { ceps } from '../../store/selectors'
 const Listar = ({ceps}) => (
   <div>
     <ul className='ceps-list'>
-      {ceps && ceps.length ? ceps.map((item) => {
+      {ceps && ceps.length > 0 ? ceps.map((item) => {
          return (
            <li key={item._id}>
              {item.cidade + ' ' + item.cep}

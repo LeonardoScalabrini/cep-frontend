@@ -1,4 +1,5 @@
 import { ADD_CEP, LIST_CEP, ERROR_CEP } from './actionTypes'
+const url = '/api/v1/cep'
 
 export const addCep = (content) => {
   return dispatch => {
@@ -8,14 +9,19 @@ export const addCep = (content) => {
       body: JSON.stringify(content)
     }
 
-    let url = 'https://correios.free.beeceptor.com/cep'
-
     fetch(url, requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        dispatch({
-          type: ADD_CEP,
-          payload: data
+      .then(response => {
+        return response.json().then(data => {
+          if (response.ok) {
+            return dispatch({
+              type: ADD_CEP,
+              payload: data
+            })
+          }
+          return dispatch({
+            type: ERROR_CEP,
+            payload: data
+          })
         })
       })
       .catch(error => dispatch({
@@ -27,13 +33,19 @@ export const addCep = (content) => {
 
 export const listCep = () => {
   return dispatch => {
-    let url = 'https://correios.free.beeceptor.com/ceps'
     fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        dispatch({
-          type: LIST_CEP,
-          payload: data
+      .then(response => {
+        return response.json().then(data => {
+          if (response.ok) {
+            return dispatch({
+              type: LIST_CEP,
+              payload: data
+            })
+          }
+          return dispatch({
+            type: ERROR_CEP,
+            payload: data
+          })
         })
       })
       .catch(error => dispatch({

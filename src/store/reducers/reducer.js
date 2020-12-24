@@ -1,12 +1,10 @@
 import { ADD_CEP, LIST_CEP, ERROR_CEP } from '../actionTypes.js'
 
 const initialState = {
-  ceps: [],
-  errors: []
+  ceps: []
 }
 
 export default function reducer (state = initialState , action) {
-  console.log(action)
   switch (action.type) {
     case ADD_CEP: {
       state.ceps = [...state.ceps, action.payload]
